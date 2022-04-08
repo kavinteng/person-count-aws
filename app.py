@@ -8,10 +8,13 @@ import torch
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
+print('start load model!!!')
 model = torch.hub.load('ultralytics/yolov5', 'yolov5l', pretrained=True)
 model.conf = 0.5
 model.iou = 0.4
 file_name = None
+
+print('load yolov5 successfully!!!')
 
 @app.route('/count_person', methods=['GET', 'POST'])
 def form_example():
@@ -44,7 +47,7 @@ def form_example():
             return 'save_img', 200
 
     else:
-        return 'wait image',200
+        return 'fall',500
 
 def request_post_onprocess(frame,date,time,file_name, polygon_nodetect, polygon_employ):
     employee = 0
