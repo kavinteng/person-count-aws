@@ -125,6 +125,3 @@ def draw_polygon(cenx, ceny, polygon1, polygon2):
         color = (0, 0, 0)
     # cv2.imshow("filledPolygon", image)
     return color
-
-
-app.run(port=5000)
