@@ -7,19 +7,17 @@ import torch
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-model = None
 
-if model == None:
-    print('start load model!!!')
-    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True, device='cpu')
-    model.conf = 0.5
-    model.iou = 0.4
-    file_name = None
-    print('load yolov5 successfully!!!')
+print('start load model!!!')
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True, device='cpu')
+model.conf = 0.5
+model.iou = 0.4
+file_name = None
+print('load yolov5 successfully!!!')
 
 @app.route('/count_person', methods=['GET', 'POST'])
 def form_example():
-    global file_name, Date, Time, date_img
+    global file_name, Date, Time, date_img, model
 
     if request.is_json:
         result2 = request.get_json()
@@ -27,7 +25,7 @@ def form_example():
         polygon_employ = result2['poly_employ']
 
         frame = cv2.imread('{}/{}'.format(date_img,file_name))
-        output_flask_process = request_post_onprocess(frame,Date,Time,file_name, polygon_nodetect, polygon_employ)
+        output_flask_process = request_post_onprocess(frame,Date,Time,file_name, polygon_nodetect, polygon_employ,model)
         print(output_flask_process)
         return jsonify(output_flask_process)
 
@@ -50,7 +48,7 @@ def form_example():
     else:
         return 'fall',500
 
-def request_post_onprocess(frame,date,time,file_name, polygon_nodetect, polygon_employ):
+def request_post_onprocess(frame,date,time,file_name, polygon_nodetect, polygon_employ, model):
     employee = 0
     customer = 0
     walking_pass = 0
@@ -129,4 +127,4 @@ def draw_polygon(cenx, ceny, polygon1, polygon2):
     return color
 
 
-app.run(debug=True, port=5000)
+app.run(port=5000)
