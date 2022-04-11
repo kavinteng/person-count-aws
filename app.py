@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 
 print('start load model!!!')
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True, device='cpu')
+model = torch.hub.load('ultralytics/yolov5', 'yolov5l', pretrained=True, device='cpu')
 model.conf = 0.5
 model.iou = 0.4
 file_name = None
