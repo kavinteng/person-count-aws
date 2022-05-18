@@ -8,6 +8,7 @@ import csv
 import numpy as np
 import sqlite3
 import requests
+import gdown
 
 print('start load model!!!')
 model = torch.hub.load('ultralytics/yolov5', 'yolov5l', pretrained=True, device='cpu')
@@ -17,6 +18,10 @@ file_name = None
 print('load yolov5 successfully!!!')
 
 print('load gender & age model')
+if os.path.isdir('gender_age_model') == False:
+    url = "https://drive.google.com/drive/u/1/folders/1n7WSJV0CdGY8vaPukLxZDXT3TjzEZ-Hp"
+    gdown.download_folder(url)
+
 faceProto="opencv_face_detector.pbtxt"
 faceModel="opencv_face_detector_uint8.pb"
 ageProto="age_deploy.prototxt"
