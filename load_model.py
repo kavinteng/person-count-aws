@@ -57,6 +57,8 @@ def build_folder_file():
             writer = csv.writer(f)
             writer.writerow(header)
 
+    return date_img
+
 def build_csv(data):
     try:
         with open('backup_file/Head-count(not for open).csv', 'a', encoding='UTF8', newline='') as f:
