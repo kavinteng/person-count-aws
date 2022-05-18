@@ -10,36 +10,26 @@ sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
 sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
 sudo update-alternatives --config python3
 
-sudo apt install python3-pip
+sudo apt-get update
+sudo apt-get install python3
+sudo apt-get install python3-pip
 pip3 install --upgrade pip
 
-git clone https://github.com/kavinteng/person-count-cam.git
-cd person-count-cam/
-pip3 install -r requirements.txt
-sudo apt install python3.7-dev
-pip3 install pycocotools
-
-pip install torch==1.7.1+cpu torchvision==0.8.2+cpu torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
-
-sudo apt-get install ffmpeg libsm6 libxext6
-
+sudo pip3 install flask
 sudo apt-get install nginx
-
 sudo apt-get install gunicorn3
+pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
+pip3 install opencv-python
+sudo apt-get install ffmpeg libsm6 libxext6
+pip3 install pandas
+pip3 install tqdm
+pip3 install matplotlib
+pip3 install seaborn
+pip3 install gdown
 
-https://github.com/Qengineering/Jetson-Nano-Ubuntu-20-image
-https://qengineering.eu/install-tensorflow-2.4.0-on-raspberry-64-os.html
-https://qengineering.eu/install-pytorch-on-raspberry-pi-4.html
+git clone https://github.com/kavinteng/person-count-aws.git
+cd /etc/nginx/sites-enabled/
+sudo nano flaskapp
+sudo service nginx restart
 
-pip install scikit-build
-pip install pythran
-
-sudo apt install qt5-default
-
-pip3 install --upgrade pip
-pip3 install --user PyQt5
-sudo apt-get update -y
-sudo apt install libgl1-mesa-glx -y
-
-pip install torch==1.9.0 torchvision==0.10.0 torchaudio==0.10.0
-Just by uninstalling lxml and installing it again with pip the issue is resolved
+gunicorn3 app:app --timeout 0
