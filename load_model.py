@@ -22,12 +22,12 @@ if os.path.isdir('gender_age_model') == False:
     url = "https://drive.google.com/drive/u/1/folders/1n7WSJV0CdGY8vaPukLxZDXT3TjzEZ-Hp"
     gdown.download_folder(url)
 
-faceProto="opencv_face_detector.pbtxt"
-faceModel="opencv_face_detector_uint8.pb"
-ageProto="age_deploy.prototxt"
-ageModel="age_net.caffemodel"
-genderProto="gender_deploy.prototxt"
-genderModel="gender_net.caffemodel"
+faceProto="gender_age_model/opencv_face_detector.pbtxt"
+faceModel="gender_age_model/opencv_face_detector_uint8.pb"
+ageProto="gender_age_model/age_deploy.prototxt"
+ageModel="gender_age_model/age_net.caffemodel"
+genderProto="gender_age_model/gender_deploy.prototxt"
+genderModel="gender_age_model/gender_net.caffemodel"
 
 MODEL_MEAN_VALUES=(78.4263377603, 87.7689143744, 114.895847746)
 ageList=['(0-2)', '(4-6)', '(8-12)', '(15-20)', '(25-32)', '(38-43)', '(48-53)', '(60-100)']
