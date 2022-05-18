@@ -7,6 +7,7 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
 if os.path.isfile('logfile.db') == False:
     create_logfile()
 
+print('STANDBY!!!')
 @app.route('/count_person', methods=['GET', 'POST'])
 def form_example():
     global file_name, Date, Time, date_img, model, faceNet, ageNet, genderNet
